@@ -21,11 +21,12 @@ async function displayHeader(photographer) {
 };
 
 //ajout récent
-async function displayData() {
+async function displayData(medias) {
     const mediasSection = document.querySelector(".medias_section");
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
-        const mediaCardDOM = mediaModel.getMediaCardDOM;
+        const mediaCardDOM = mediaModel.getMediaCardDOM();
+        console.log(mediaCardDOM)
         mediasSection.appendChild(mediaCardDOM);
     });
 }
@@ -35,6 +36,7 @@ async function init() {
     const { photographer } = await getPhotographerMedias();
     displayHeader(photographer);
     // ajout récent
+    const { medias } = await getPhotographerMedias();
     displayData(medias);
 };
 
