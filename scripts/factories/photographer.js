@@ -36,15 +36,13 @@ function photographerFactory(data) {
         article.appendChild(p3);
         return (article);
     }
-
-    //function getuserheaderdom à créer
     
     function getUserHeaderDOM() {
         
         const photographerHeader = document.querySelector('.photograph-header');
         const photographerInformations = document.createElement( 'div' );
 
-        const h2 = document.createElement('h2');
+        const h1 = document.createElement('h1');
         const p1 = document.createElement('p');  
         const p2 = document.createElement('p');
 
@@ -54,7 +52,7 @@ function photographerFactory(data) {
         img.setAttribute("src", picture);
         img.setAttribute("alt", `Photo de ${name}`);
         
-        h2.textContent = name;
+        h1.textContent = name;
         p1.textContent = `${city}, ${country}`;
         p1.classList.add('photographer-location');
         p2.textContent = tagline;
@@ -77,7 +75,7 @@ function photographerFactory(data) {
         //
 
         photographerHeader.appendChild(photographerInformations);
-        photographerInformations.appendChild(h2);
+        photographerInformations.appendChild(h1);
         photographerInformations.appendChild(p1);
         photographerInformations.appendChild(p2);
 
