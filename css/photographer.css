@@ -112,7 +112,7 @@ h1 {
     position: fixed;
     bottom: 0;
     right: 36px;
-
+    z-index: 1;
     border-radius: 5px 5px 0 0;
     display: flex;
     justify-content: space-around;
@@ -137,6 +137,7 @@ article img {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
+    margin: auto;
     margin-top: 50px;
 }
 
@@ -168,6 +169,10 @@ article img {
     white-space: nowrap;
 }
 
+.media-likes {
+    margin-right: 15px;
+}
+
 .media-likes-counter {
     display: flex;
     align-items: center;
@@ -175,6 +180,9 @@ article img {
 
 .fa-heart {
     color: #901C1C;
-    font-weight: 900;
     font-size: 24px;
+}
+
+.selected {
+    font-weight: 900;
 }

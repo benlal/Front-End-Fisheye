@@ -35,7 +35,7 @@ function mediaFactory(data) {
         mediaLikes.classList.add('media-likes');
         const mediaHeart = document.createElement( 'i' );
         mediaHeart.classList.add('fa-regular', 'fa-heart');
-        mediaLikes.textContent = `${likes} `;
+        mediaLikes.textContent = `${likes}`;
         const mediaLikesCounter = document.createElement( 'div' );
         mediaLikesCounter.classList.add('media-likes-counter');
 
@@ -54,6 +54,9 @@ function mediaFactory(data) {
 
         return (article);
     }
+
     //return autres éléments
     return { id, photographerId, title, image, video, likes, date, price, getMediaCardDOM }
+
+
 } 

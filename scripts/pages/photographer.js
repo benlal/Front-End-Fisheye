@@ -20,7 +20,7 @@ async function displayHeader(photographer) {
     const photographerHeader = photographerFactory(photographer).getUserHeaderDOM()
 };
 
-//ajout récent
+
 async function displayData(medias) {
     const mediasSection = document.querySelector(".medias_section");
     medias.forEach((media) => {
@@ -31,13 +31,50 @@ async function displayData(medias) {
     });
 }
 
+async function getAllHearts() {
+    let hearts = document.querySelectorAll(".fa-heart");
+    return hearts
+}
+
+async function setEventToHearts(faHeart) {
+    faHeart.forEach(function(heart) {
+      heart.addEventListener("click", likesCount);
+    });
+}
+
+function likesCount() {
+    let elt = this;
+    let likesNumberElt = elt.closest(".media-likes-counter").getElementsByClassName("media-likes")[0];
+    let likesNumber = parseInt(likesNumberElt.textContent , 10);
+    if (elt.classList.contains("selected")) {
+        // likestotaux--;
+        likesNumber--;
+        elt.classList.remove("selected");
+    } else {
+        // likestotaux++;
+        likesNumber++;
+        elt.classList.add("selected");
+    }
+    likesNumberElt.textContent = likesNumber;
+}
+
+//ajout récent
+
+
+
+
+//ajout récent
+
+
+
 async function init() {
     // Récupère les datas des photographes
     const { photographer } = await getPhotographerMedias();
     displayHeader(photographer);
-    // ajout récent
     const { medias } = await getPhotographerMedias();
     displayData(medias);
+    const faHeart = await getAllHearts(); 
+    setEventToHearts(faHeart);
 };
 
 init();
