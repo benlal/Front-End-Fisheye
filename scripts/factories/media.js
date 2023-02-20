@@ -11,11 +11,11 @@ function mediaFactory(data) {
         vidsrc.setAttribute("type", `video/mp4`);
         vid.appendChild(vidsrc);
         vid.controls = "controls";
-        console.log(vid)
         return vid
       } else if (media.image) {
         const img = document.createElement("img");
         img.setAttribute("src", `/assets/medias/${photographerId}/${image}`);
+        img.setAttribute("data-id", media.id);
         return img
       }
       else {
@@ -26,6 +26,13 @@ function mediaFactory(data) {
     function getMediaCardDOM() {
         const article = document.createElement( 'article' );
         const media = mediaType(data);
+
+        
+        
+        
+        media.setAttribute( "onclick", "displayLightbox(this)" );
+
+
         const mediaInfos = document.createElement( 'div' );
         mediaInfos.classList.add('media-infos');
         const mediaTitle = document.createElement( 'p' );
@@ -39,9 +46,6 @@ function mediaFactory(data) {
         const mediaLikesCounter = document.createElement( 'div' );
         mediaLikesCounter.classList.add('media-likes-counter');
 
-
-        //créer div contenant likes et coeur
-
         article.appendChild(media);
         article.appendChild(mediaInfos);
         mediaInfos.appendChild(mediaTitle);
@@ -49,14 +53,9 @@ function mediaFactory(data) {
         mediaLikesCounter.appendChild(mediaLikes);
         mediaLikesCounter.appendChild(mediaHeart);
 
-
-
-
         return (article);
     }
 
     //return autres éléments
     return { id, photographerId, title, image, video, likes, date, price, getMediaCardDOM }
-
-
 } 
