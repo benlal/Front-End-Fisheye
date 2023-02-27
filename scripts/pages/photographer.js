@@ -30,14 +30,19 @@ async function displayHeader(photographer, sumLikes) {
     const photographerHeader = photographerFactory(photographer).getUserHeaderDOM(sumLikes)
 };
 
-async function displayData(medias) {
+async function displayData(medias, id) {
     const mediasSection = document.querySelector(".medias_section");
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
+        mediaCardDOM.querySelector('.media').addEventListener('click', function () {
+            displayLightbox(media.id, medias);
+        });
         mediasSection.appendChild(mediaCardDOM);
-    });
 
+
+        // media.setAttribute("onclick", `displayLightbox(${id})`);
+    });
 }
 
 async function getAllHearts() {
