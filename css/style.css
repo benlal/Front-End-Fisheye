@@ -3,8 +3,12 @@
 * {
     margin: 0;
     padding: 0;
-  }
-  
+}
+
+img {
+    overflow-clip-margin: unset;
+}
+
 
 body {
     font-family: "DM Sans", sans-serif;
@@ -42,7 +46,8 @@ h1 {
     margin-top: 50px;
 }
 
-.photographer_section article, .photographer_section a {
+.photographer_section article,
+.photographer_section a {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -55,7 +60,8 @@ h1 {
     font-size: 36px;
 }
 
-.photographer_section article img, .photograph-header img {
+.photographer_section article img,
+.photograph-header img {
     height: 200px;
     width: 200px;
     border-radius: 200px;
@@ -83,5 +89,3 @@ h1 {
     font-size: 9px;
     color: #757575;
 }
-
-

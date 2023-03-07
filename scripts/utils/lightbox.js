@@ -10,25 +10,25 @@ async function displayLightbox(mediaId, medias) {
     let media = medias[index];
 
     const photographerList = await getPhotographerList();
-    console.log(photographerList)
     const currentPhotographer = photographerList.find(p => p.id === media.photographerId);
 
-    displayLightboxMedia(media, medias, currentPhotographer);
+    displayLightboxMedia(media, currentPhotographer);
 
     manageLightboxEvents(index, medias, currentPhotographer);
 }
 
 function manageLightboxEvents(index, medias, photographer) {
+    let currentLightboxIndex = index;
     document.querySelector('.previous-media').addEventListener('click', function () {
-        const newLightboxIndex = getPreviousMediaIndex(index, medias);
-        const newMediaToDisplay = medias[newLightboxIndex];
-        displayLightboxMedia(newMediaToDisplay, medias, photographer);
+        currentLightboxIndex = getPreviousMediaIndex(currentLightboxIndex, medias);
+        const newMediaToDisplay = medias[currentLightboxIndex];
+        displayLightboxMedia(newMediaToDisplay, photographer);
     });
 
     document.querySelector('.next-media').addEventListener('click', function () {
-        const newLightboxIndex = getNextMediaIndex(index, medias);
-        const newMediaToDisplay = medias[newLightboxIndex];
-        displayLightboxMedia(newMediaToDisplay, medias, photographer);
+        currentLightboxIndex = getNextMediaIndex(currentLightboxIndex, medias);
+        const newMediaToDisplay = medias[currentLightboxIndex];
+        displayLightboxMedia(newMediaToDisplay, photographer);
     });
 }
 
@@ -36,22 +36,33 @@ async function getPhotographerList() {
     // fetch les données des photographes
     const response = await fetch('../../data/photographers.json');
 
-    //définit response comme étant du json
-    return await response.json().photographers;
-}
+    // vérifier si response est valide
+    if (!response.ok) {
+        throw new Error('Impossible de récupérer la liste des photographes.');
+    }
 
+    //définit response comme étant du json
+    const data = await response.json();
+
+    //vérifier si data est valide
+    if (!data || !data.photographers) {
+        throw new Error('Données invalides pour la liste des photographes.');
+    }
+
+    return data.photographers;
+}
 
 function closeLightbox() {
     const lightbox = document.getElementById("media-lightbox");
     lightbox.style.display = "none";
 }
 
-function displayLightboxMedia(media, medias, photographer) {
+function displayLightboxMedia(media, photographer) {
     const mediaLightboxMedia = document.querySelector('.media-lightbox_media');
-    if (media.tagName === "VIDEO") {
-        mediaLightboxMedia.innerHTML = `<video controls><source src="assets/photographers/${photographer.name}/${media.video}" aria-label=${media.title}></source></video><p class="media-lightbox_title">${media.title}</p>`;
+    if (media.video) {
+        mediaLightboxMedia.innerHTML = `<video class="media-lightbox_img" controls><source src="assets/medias/${photographer.id}/${media.video}" aria-label=${media.title}></source></video><p class="media-lightbox_title">${media.title}</p>`;
     } else {
-        mediaLightboxMedia.innerHTML = `<img src="assets/photographers/${photographer.name}/${media.image}" alt=${media.title}><p class="media-lightbox_title">${media.title}</p>`;
+        mediaLightboxMedia.innerHTML = `<img class="media-lightbox_img" src="assets/medias/${photographer.id}/${media.image}" alt=${media.title}><p class="media-lightbox_title">${media.title}</p>`;
     }
 }
 

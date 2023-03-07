@@ -10,7 +10,7 @@ function mediaFactory(data) {
       vidsrc.setAttribute("src", `/assets/medias/${photographerId}/${video}`);
       vidsrc.setAttribute("type", `video/mp4`);
       vid.appendChild(vidsrc);
-      vid.controls = "controls";
+      // vid.controls = "controls";
       return vid
     } else if (media.image) {
       const img = document.createElement("img");

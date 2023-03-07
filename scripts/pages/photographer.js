@@ -30,7 +30,7 @@ async function displayHeader(photographer, sumLikes) {
     const photographerHeader = photographerFactory(photographer).getUserHeaderDOM(sumLikes)
 };
 
-async function displayData(medias, id) {
+async function displayData(medias) {
     const mediasSection = document.querySelector(".medias_section");
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
@@ -75,7 +75,7 @@ function likesCount() {
     likesNumberElt.textContent = likesNumber;
 }
 
-//ajout récent
+
 function getSumLikes(medias) {
     const sumLikes = medias.reduce(
         (accumulator, currentMedia) => accumulator + currentMedia.likes,
@@ -83,7 +83,7 @@ function getSumLikes(medias) {
     );
     return sumLikes
 }
-//ajout récent
+
 
 async function init() {
     // Récupère les datas des photographes
@@ -98,3 +98,26 @@ async function init() {
 };
 
 init();
+
+
+//ajout récent
+document.querySelector("#sort-select").addEventListener("change", event => {
+
+    if (event.target.value == "popularity") {
+        console.log('tri par popularité')
+    }
+})
+
+document.querySelector("#sort-select").addEventListener("change", event => {
+
+    if (event.target.value == "date") {
+        console.log('tri par date')
+    }
+})
+
+document.querySelector("#sort-select").addEventListener("change", event => {
+
+    if (event.target.value == "title") {
+        console.log('tri par titre')
+    }
+})

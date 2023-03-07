@@ -18,6 +18,22 @@
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
+
+    <div class="sort_section">
+
+
+      <label for="sort-select" id="sort-select_label">Trier par</label>
+
+      <select name="sorting" id="sort-select">
+        <option value="popularity">Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+      </select>
+
+    </div>
+
+
+
     <div class="medias_section"></div>
   </main>
   <div id="contact_modal">
@@ -46,11 +62,15 @@
       <i class="close-media fa-solid fa-xmark" onclick="closeLightbox()"></i>
       <i class="previous-media fa-solid fa-angle-left"></i>
       <div class="media-lightbox_media">
-        
       </div>
       <i class="next-media fa-solid fa-angle-right"></i>
     </div>
   </div>
+
+
+
+
+
   <script src="scripts/factories/photographer.js"></script>
   <script src="scripts/factories/media.js"></script>
   <script src="/scripts/pages/photographer.js"></script>
