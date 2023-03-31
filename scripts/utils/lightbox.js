@@ -9,45 +9,19 @@ async function displayLightbox(mediaId, medias) {
 
     let media = medias[index];
 
-    const photographerList = await getPhotographerList();
-    const currentPhotographer = photographerList.find(p => p.id === media.photographerId);
+    displayLightboxMedia(media);
 
-    displayLightboxMedia(media, currentPhotographer);
+    manageLightbox(index, medias);
 
-    manageLightboxEvents(index, medias, currentPhotographer);
 }
 
-async function getPhotographerList() {
-    // fetch les données des photographes
-    const response = await fetch('../../data/photographers.json');
-
-    // vérifier si response est valide
-    if (!response.ok) {
-        throw new Error('Impossible de récupérer la liste des photographes.');
-    }
-
-    //définit response comme étant du json
-    const data = await response.json();
-
-    //vérifier si data est valide
-    if (!data || !data.photographers) {
-        throw new Error('Données invalides pour la liste des photographes.');
-    }
-
-    return data.photographers;
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById("media-lightbox");
-    lightbox.style.display = "none";
-}
-
-function displayLightboxMedia(media, photographer) {
+function displayLightboxMedia(media) {
     const mediaLightboxMedia = document.querySelector('.media-lightbox_media');
+    const photographerId = getPhotographerId();
     if (media.video) {
-        mediaLightboxMedia.innerHTML = `<video class="media-lightbox_img" controls><source src="assets/medias/${photographer.id}/${media.video}" aria-label="${media.title}" data-id="${media.id}"></source></video><p class="media-lightbox_title">${media.title}</p>`;
+        mediaLightboxMedia.innerHTML = `<video class="media-lightbox_img" controls><source src="assets/medias/${photographerId}/${media.video}" aria-label="${media.title}" data-id="${media.id}"></source></video><p class="media-lightbox_title">${media.title}</p>`;
     } else {
-        mediaLightboxMedia.innerHTML = `<img class="media-lightbox_img" src="assets/medias/${photographer.id}/${media.image}" alt="${media.title}" data-id="${media.id}"><p class="media-lightbox_title">${media.title}</p>`;
+        mediaLightboxMedia.innerHTML = `<img class="media-lightbox_img" src="assets/medias/${photographerId}/${media.image}" alt="${media.title}" data-id="${media.id}"><p class="media-lightbox_title">${media.title}</p>`;
     }
 }
 
@@ -70,40 +44,62 @@ function getPreviousMediaIndex(index, medias) {
 }
 
 
-
-
-function manageLightboxEvents(index, medias, photographer) {
+function manageLightbox(index, medias) {
     let currentLightboxIndex = index;
-    document.querySelector('.previous-media').addEventListener('click', function () {
+    const closeMedia = document.querySelector('.close-media');
+    const goToNextMedia = function() {
+        currentLightboxIndex = getNextMediaIndex(currentLightboxIndex, medias);
+        const newMediaToDisplay = medias[currentLightboxIndex];
+        displayLightboxMedia(newMediaToDisplay);
+    }
+    const goToPreviousMedia = function() {
         currentLightboxIndex = getPreviousMediaIndex(currentLightboxIndex, medias);
         const newMediaToDisplay = medias[currentLightboxIndex];
-        displayLightboxMedia(newMediaToDisplay, photographer);
-    });
-
-    document.querySelector('.next-media').addEventListener('click', function () {
-        goToNextMedia(index, medias, photographer);
-    });
-}
-
-function goToNextMedia(index, medias, photographer) {
-    const currentLightboxIndex = getNextMediaIndex(currentLightboxIndex, medias);
-    const newMediaToDisplay = medias[currentLightboxIndex];
-    displayLightboxMedia(newMediaToDisplay, photographer);
-}
-
-
-async function toto() {
-    const id = getPhotographerId();
-    const { photographer, medias } = await getPhotographerMedias(id);
-}
-
-document.addEventListener("keydown", (event) => {
-    toto()
-    console.log('touche')
-    if (event.key == "ArrowRight") {
-        goToNextMedia(index, medias, photographer);
+        displayLightboxMedia(newMediaToDisplay);
     }
-});
+
+    const handleClickPreviousArrow = function() {
+        goToPreviousMedia();
+    };
+    const handleClickNextArrow = function () {
+        goToNextMedia();
+    };
+
+    document.querySelector('.previous-media').addEventListener('click', handleClickPreviousArrow);
+    document.querySelector('.next-media').addEventListener('click', handleClickNextArrow);
+
+    const nextMediaKeyList = ["ArrowRight", "d"];
+    const previousMediaKeyList = ["ArrowLeft", "q"];
+
+    const handleKeydown = (event) => {
+        if (nextMediaKeyList.includes(event.key)) {
+            goToNextMedia();
+        }
+        if (previousMediaKeyList.includes(event.key)) {
+            goToPreviousMedia();
+        }
+    }
+
+    document.body.addEventListener("keydown", handleKeydown);
+
+    function closeLightbox() {
+        const lightbox = document.getElementById("media-lightbox");
+        lightbox.style.display = "none";
+        document.body.removeEventListener("keydown", handleKeydown);
+        document.querySelector('.previous-media').removeEventListener('click', handleClickPreviousArrow);
+        document.querySelector('.next-media').removeEventListener('click', handleClickNextArrow);
+    }
+
+    
+    closeMedia.focus();
+    closeMedia.addEventListener('click', function () {
+        closeLightbox();
+    });
+
+}
+
+
+
 
 // document.addEventListener("keydown", (event) => {
     

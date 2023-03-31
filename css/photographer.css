@@ -187,7 +187,7 @@ article img {
     font-size: 24px;
 }
 
-.selected {
+.selected .fa-heart {
     font-weight: 900;
 }
 

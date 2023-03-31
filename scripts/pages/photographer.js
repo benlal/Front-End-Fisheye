@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-async function getPhotographerId() {
+function getPhotographerId() {
     //getting ID
     const url = new URL(window.location.href);
     const id = parseInt(url.searchParams.get("id"));
@@ -55,7 +55,7 @@ function galeryCleaner() {
 }
 
 async function getAllHearts() {
-    let hearts = document.querySelectorAll(".fa-heart");
+    let hearts = document.querySelectorAll(".like-button");
     return hearts
 }
 

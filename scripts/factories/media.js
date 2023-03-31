@@ -27,8 +27,9 @@ function mediaFactory(data) {
 
   function getMediaCardDOM() {
     const article = document.createElement('article');
+    const mediaButton = document.createElement('button');
     const media = mediaType(data);
-    media.classList.add('media');
+    mediaButton.classList.add('media');
 
 
     const mediaInfos = document.createElement('div');
@@ -38,18 +39,23 @@ function mediaFactory(data) {
     mediaTitle.textContent = `${title}`;
     const mediaLikes = document.createElement('p');
     mediaLikes.classList.add('media-likes');
+    const heartButton = document.createElement('button');
+    heartButton.classList.add('like-button');
+    
     const mediaHeart = document.createElement('i');
     mediaHeart.classList.add('fa-regular', 'fa-heart');
     mediaLikes.textContent = `${likes}`;
     const mediaLikesCounter = document.createElement('div');
     mediaLikesCounter.classList.add('media-likes-counter');
 
-    article.appendChild(media);
+    article.appendChild(mediaButton);
+    mediaButton.appendChild(media);
     article.appendChild(mediaInfos);
     mediaInfos.appendChild(mediaTitle);
     mediaInfos.appendChild(mediaLikesCounter);
     mediaLikesCounter.appendChild(mediaLikes);
-    mediaLikesCounter.appendChild(mediaHeart);
+    mediaLikesCounter.appendChild(heartButton);
+    heartButton.appendChild(mediaHeart);
 
     return (article);
   }

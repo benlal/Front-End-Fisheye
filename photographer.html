@@ -21,15 +21,15 @@
     <div class="sort_section">
       <p id="sorted-by">Trier par</p>
       <div id="sort-options">
-        <div class="sort-button closed-button" onclick="displayList()">
-          <p class="first-option">Popularité</p>
+        <button class="sort-button closed-button" onclick="displayList()">
+          <span class="first-option">Popularité</span>
           <i class="fa-solid fa-angle-down"></i>
-        </div>
+        </button>
         <div class="sort-list closed-list">
           <hr>
-          <p class="sort-option second-option">Date</p>
+          <button class="sort-option second-option">Date</button>
           <hr>
-          <p class="sort-option third-option">Titre</p>
+          <button class="sort-option third-option">Titre</button>
         </div>
       </div>
     </div>
@@ -59,11 +59,10 @@
   </div>
   <div id="media-lightbox">
     <div class="media-lightbox_content">
-      <i class="close-media fa-solid fa-xmark" onclick="closeLightbox()"></i>
-      <i class="previous-media fa-solid fa-angle-left"></i>
-      <div class="media-lightbox_media">
-      </div>
-      <i class="next-media fa-solid fa-angle-right"></i>
+      <button class="close-media"><i class="fa-solid fa-xmark"></i></button>
+      <button class="previous-media"><i class="fa-solid fa-angle-left"></i></button>
+      <div class="media-lightbox_media"></div>
+      <button class="next-media"><i class="fa-solid fa-angle-right"></i></button>
     </div>
   </div>
   <script src="scripts/factories/photographer.js"></script>
