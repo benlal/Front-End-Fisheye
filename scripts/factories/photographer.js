@@ -1,5 +1,6 @@
 function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
+    
     const picture = `assets/photographers/${portrait}`;
     const photographerPage = `./photographer.html?id=${id}`;
 
@@ -41,9 +42,9 @@ function photographerFactory(data) {
         const photographerHeader = document.querySelector('.photograph-header');
         const photographerInformations = document.createElement('div');
 
-        const h1 = document.createElement('h1');
-        const p1 = document.createElement('p');
-        const p2 = document.createElement('p');
+        const photographerName = document.createElement('h1');
+        const photographerLocation = document.createElement('h2');
+        const photographerTagline = document.createElement('p');
 
         const contactButton = document.querySelector('.contact_button');
 
@@ -51,38 +52,38 @@ function photographerFactory(data) {
         img.setAttribute("src", picture);
         img.setAttribute("alt", `Photo de ${name}`);
 
-        h1.textContent = name;
-        p1.textContent = `${city}, ${country}`;
-        p1.classList.add('photographer-location');
-        p2.textContent = tagline;
-        p2.classList.add('photographer-tagline');
+        photographerName.textContent = name;
+        photographerLocation.textContent = `${city}, ${country}`;
+        photographerLocation.classList.add('photographer-location');
+        photographerTagline.textContent = tagline;
+        photographerTagline.classList.add('photographer-tagline');
 
         const secondaryInformations = document.createElement('div');
         secondaryInformations.classList.add('secondary_informations');
 
-        const p3 = document.createElement('p');
-        const p4 = document.createElement('p');
+        const photographerPrice = document.createElement('p');
+        const photographerLikes = document.createElement('p');
 
-        p3.textContent = `${price}€/jour`;
-        p3.classList.add('photographer-price');
+        photographerPrice.textContent = `${price}€/jour`;
+        photographerPrice.classList.add('photographer-price');
 
         // ajout récent
-        p4.innerHTML = `<span id="photograph-likes-value">${sumLikes}</span> likes`
-        p4.classList.add('photographer-price');
+        photographerLikes.innerHTML = `<span id="photograph-likes-value">${sumLikes}</span> likes`
+        photographerLikes.classList.add('photographer-price');
         //
 
         photographerHeader.appendChild(photographerInformations);
-        photographerInformations.appendChild(h1);
-        photographerInformations.appendChild(p1);
-        photographerInformations.appendChild(p2);
+        photographerInformations.appendChild(photographerName);
+        photographerInformations.appendChild(photographerLocation);
+        photographerInformations.appendChild(photographerTagline);
 
         photographerHeader.appendChild(contactButton);
 
         photographerHeader.appendChild(img);
 
         photographerHeader.appendChild(secondaryInformations);
-        secondaryInformations.appendChild(p4);
-        secondaryInformations.appendChild(p3);
+        secondaryInformations.appendChild(photographerLikes);
+        secondaryInformations.appendChild(photographerPrice);
 
         return (photographerHeader);
     }

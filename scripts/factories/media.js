@@ -9,6 +9,7 @@ function mediaFactory(data) {
       const vidsrc = document.createElement("source");
       vidsrc.setAttribute("src", `/assets/medias/${photographerId}/${video}`);
       vidsrc.setAttribute("type", `video/mp4`);
+      vidsrc.setAttribute("aria-label", `Vidéo intitulée ${media.title}`);
       vid.appendChild(vidsrc);
       // vid.controls = "controls";
       return vid
@@ -16,6 +17,7 @@ function mediaFactory(data) {
       const img = document.createElement("img");
       img.setAttribute("src", `/assets/medias/${photographerId}/${image}`);
       img.setAttribute("data-id", media.id);
+      img.setAttribute("alt", `Photographie intitulée ${media.title}`);
       return img
     }
     else {

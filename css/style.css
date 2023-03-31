@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "DM Sans", sans-serif;
 }
 
 img {
@@ -11,7 +12,7 @@ img {
 
 
 body {
-    font-family: "DM Sans", sans-serif;
+    
     margin: 0;
 }
 
@@ -69,6 +70,7 @@ h1 {
 }
 
 .photographer-location {
+    font-weight: normal;
     font-size: 13px;
     color: #901C1C;
 }
@@ -78,7 +80,7 @@ h1 {
 }
 
 .photographer-tagline {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .photograph-header .photographer-tagline {
@@ -86,6 +88,6 @@ h1 {
 }
 
 .photographer-price {
-    font-size: 9px;
+    font-size: 11px;
     color: #757575;
 }

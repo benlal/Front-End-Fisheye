@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -18,42 +18,42 @@
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
-
     <div class="sort_section">
-
-
-      <label for="sort-select" id="sort-select_label">Trier par</label>
-
-      <select name="sorting" id="sort-select">
-        <option value="popularity">Popularité</option>
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
-      </select>
-
+      <p id="sorted-by">Trier par</p>
+      <div id="sort-options">
+        <div class="sort-button closed-button" onclick="displayList()">
+          <p class="first-option">Popularité</p>
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <div class="sort-list closed-list">
+          <hr>
+          <p class="sort-option second-option">Date</p>
+          <hr>
+          <p class="sort-option third-option">Titre</p>
+        </div>
+      </div>
     </div>
-
-
-
     <div class="medias_section"></div>
   </main>
   <div id="contact_modal">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" class="close-button" onclick="closeModal()" />
+        <img src="assets/icons/close.svg" class="close-button" alt="Croix de fermeture du formulaire"
+          onclick="closeModal()" />
       </header>
       <form>
         <div>
-          <label>Prénom</label>
-          <input />
-          <label>Nom</label>
-          <input />
-          <label>Email</label>
-          <input />
-          <label>Votre message</label>
-          <textarea></textarea>
+          <label for="firstname">Prénom</label>
+          <input id="firstname" placeholder="Prénom" />
+          <label for="lastname">Nom</label>
+          <input id="lastname" placeholder="Nom" />
+          <label for="email">Email</label>
+          <input id="email" placeholder="Email" />
+          <label for="message">Votre message</label>
+          <textarea id="message" placeholder="Votre message"></textarea>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button modal_button">Envoyer</button>
       </form>
     </div>
   </div>
@@ -66,11 +66,6 @@
       <i class="next-media fa-solid fa-angle-right"></i>
     </div>
   </div>
-
-
-
-
-
   <script src="scripts/factories/photographer.js"></script>
   <script src="scripts/factories/media.js"></script>
   <script src="/scripts/pages/photographer.js"></script>
