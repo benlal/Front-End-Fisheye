@@ -45,20 +45,21 @@ function getPreviousMediaIndex(index, medias) {
 
 
 function manageLightbox(index, medias) {
+
     let currentLightboxIndex = index;
-    const closeMedia = document.querySelector('.close-media');
-    const goToNextMedia = function() {
+
+    const goToNextMedia = function () {
         currentLightboxIndex = getNextMediaIndex(currentLightboxIndex, medias);
         const newMediaToDisplay = medias[currentLightboxIndex];
         displayLightboxMedia(newMediaToDisplay);
     }
-    const goToPreviousMedia = function() {
+    const goToPreviousMedia = function () {
         currentLightboxIndex = getPreviousMediaIndex(currentLightboxIndex, medias);
         const newMediaToDisplay = medias[currentLightboxIndex];
         displayLightboxMedia(newMediaToDisplay);
     }
 
-    const handleClickPreviousArrow = function() {
+    const handleClickPreviousArrow = function () {
         goToPreviousMedia();
     };
     const handleClickNextArrow = function () {
@@ -70,13 +71,19 @@ function manageLightbox(index, medias) {
 
     const nextMediaKeyList = ["ArrowRight", "d"];
     const previousMediaKeyList = ["ArrowLeft", "q"];
+    const closeLightBoxKeyList = ["Escape"];
 
     const handleKeydown = (event) => {
+        console.log('test');
         if (nextMediaKeyList.includes(event.key)) {
             goToNextMedia();
         }
         if (previousMediaKeyList.includes(event.key)) {
             goToPreviousMedia();
+        }
+        if (closeLightBoxKeyList.includes(event.key)) {
+            closeLightbox();
+            
         }
     }
 
@@ -90,21 +97,13 @@ function manageLightbox(index, medias) {
         document.querySelector('.next-media').removeEventListener('click', handleClickNextArrow);
     }
 
-    
+    const closeMedia = document.querySelector('.close-media');
     closeMedia.focus();
     closeMedia.addEventListener('click', function () {
         closeLightbox();
+        document.querySelector(`.media-button[data-id="${medias[currentLightboxIndex].id}"]`).focus();
+        
+    
     });
 
 }
-
-
-
-
-// document.addEventListener("keydown", (event) => {
-    
-//     if (event.key === "Enter") {
-//         console.log('ouverture')
-//         displayLightbox();
-//     }
-// })

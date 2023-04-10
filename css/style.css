@@ -79,10 +79,6 @@ h1 {
     font-size: 24px;
 }
 
-.photographer-tagline {
-    font-size: 11px;
-}
-
 .photograph-header .photographer-tagline {
     font-size: 18px;
 }
@@ -90,4 +86,9 @@ h1 {
 .photographer-price {
     font-size: 11px;
     color: #757575;
+}
+
+button {
+    border: none;
+    background: none;
 }

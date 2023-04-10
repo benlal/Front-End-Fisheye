@@ -9,6 +9,7 @@ function photographerFactory(data) {
 
         const a = document.createElement('a');
         a.setAttribute("href", photographerPage);
+        a.setAttribute("aria-label", `Accès à la page de ${name}`);
 
         const img = document.createElement('img');
         img.setAttribute("src", picture);
