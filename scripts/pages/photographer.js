@@ -1,34 +1,27 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
+//gets photographer ID
 function getPhotographerId() {
-    //getting ID
     const url = new URL(window.location.href);
     const id = parseInt(url.searchParams.get("id"));
     return id;
 }
 
-
+// fetches medias from a photographer
 async function getPhotographerMedias(id) {
-
-    // fetch les données des photographes + des médias
     const response = await fetch('../../data/photographers.json');
-
-    //définit response comme étant du json
     const data = await response.json();
-
-    // retour des valeurs
     return ({
-        //trouve dans photographers le premier photographe dont la propriété id est strictement égale à l'id déclarée dans la constante
         photographer: data.photographers.find(p => p.id === id),
-        //trouve TOUS les médias filtrés en fonction de l'id
+        //filters medias by ID
         medias: data.media.filter(m => m.photographerId === id)
     })
 }
 
+// creates photographer's header
 async function displayHeader(photographer, sumLikes) {
     const photographerHeader = photographerFactory(photographer).getUserHeaderDOM(sumLikes)
 };
 
+//creates medias galery
 async function displayData(medias) {
     const mediasSection = document.querySelector(".medias_section");
     medias.forEach((media) => {
@@ -42,35 +35,43 @@ async function displayData(medias) {
 
 }
 
-
+//sorts medias by popularity (number of likes) when page opens
 function initialSort(medias) {
     medias.sort((mediaA, mediaB) => {
         return mediaA.likes - mediaB.likes
     }).reverse()
 }
 
+//deletes current galery
 function galeryCleaner() {
     const mediasSection = document.querySelector(".medias_section");
     mediasSection.innerHTML = '';
 }
 
+//gets all heart icons
 async function getAllHearts() {
     let hearts = document.querySelectorAll(".like-button");
     return hearts
 }
 
+
+//listens click on heart icons
 async function setEventToHearts(faHeart) {
     faHeart.forEach(function (heart) {
         heart.addEventListener("click", likesCount);
     });
 }
 
+//adds or substracts likes on medias and total
 function likesCount() {
     let elt = this;
+    //targets number element close to heart icon
     let likesNumberElt = elt.closest(".media-likes-counter").getElementsByClassName("media-likes")[0];
     let likesNumber = parseInt(likesNumberElt.textContent, 10);
+    //gets initial total likes value
     let photographLikesValueElt = document.getElementById('photograph-likes-value');
     let photographLikesValue = parseInt(photographLikesValueElt.textContent, 10);
+    //checks if like is already given, adds or subtracts a like accordingly
     if (elt.classList.contains("selected")) {
         photographLikesValue--;
         likesNumber--;
@@ -80,11 +81,12 @@ function likesCount() {
         likesNumber++;
         elt.classList.add("selected");
     }
+    //replaces both elements by new values
     photographLikesValueElt.textContent = photographLikesValue;
     likesNumberElt.textContent = likesNumber;
 }
 
-
+//adds up likes on each medias
 function getSumLikes(medias) {
     const sumLikes = medias.reduce(
         (accumulator, currentMedia) => accumulator + currentMedia.likes,
@@ -94,14 +96,14 @@ function getSumLikes(medias) {
 }
 
 
-
+//sorts medias by popularity, date or title
 function sortMedias(medias) {
     let firstOption = document.querySelector(".first-option");
     let secondOption = document.querySelector(".second-option");
     let thirdOption = document.querySelector(".third-option");
 
+    //sorts medias by popularity
     function sortByPopularity() {
-
         medias.sort((mediaA, mediaB) => {
             return mediaA.likes - mediaB.likes
         }).reverse()
@@ -111,8 +113,8 @@ function sortMedias(medias) {
         closeList();
     }
 
+    //sorts medias by date
     function sortByDate() {
-
         medias.sort((mediaA, mediaB) => {
             return new Date().valueOf(mediaA.likes) - new Date().valueOf(mediaB.likes)
         }).reverse()
@@ -122,8 +124,8 @@ function sortMedias(medias) {
         closeList();
     }
 
+    //sorts medias by title
     function sortByTitle() {
-
         medias.sort((mediasA, mediasB) => {
             if (mediasA.title > mediasB.title) {
                 return 1;
@@ -143,7 +145,6 @@ function sortMedias(medias) {
 
 
     secondOption.addEventListener('click', function () {
-
         let newOption = '';
         let oldOption = firstOption.innerHTML;
 
@@ -160,11 +161,9 @@ function sortMedias(medias) {
         newOption = secondOption.innerHTML;
         firstOption.innerHTML = newOption;
         secondOption.innerHTML = oldOption;
-
     });
 
     thirdOption.addEventListener('click', function () {
-
         let newOption = '';
         let oldOption = firstOption.innerHTML;
 
@@ -181,11 +180,10 @@ function sortMedias(medias) {
         newOption = thirdOption.innerHTML;
         firstOption.innerHTML = newOption;
         thirdOption.innerHTML = oldOption;
-
     });
 }
 
-
+//closes list of filters
 function closeList() {
     const sortButton = document.querySelector(".sort-button");
     const sortList = document.querySelector(".sort-list");
@@ -197,13 +195,13 @@ function closeList() {
     sortArrow.classList.remove("reverted-arrow");
 }
 
-
+//opens list of filters
 function displayList() {
-
     const sortButton = document.querySelector(".sort-button");
     const sortList = document.querySelector(".sort-list");
     const sortArrow = document.querySelector(".fa-angle-down");
 
+    //checks if list is closed the opens it
     if (sortButton.classList.contains("closed-button")) {
         sortButton.classList.remove("closed-button");
         sortList.classList.remove("closed-list");
@@ -213,12 +211,10 @@ function displayList() {
     else {
         closeList();
     }
-
 }
 
 
 async function init() {
-    // Récupère les datas des photographes
     const id = await getPhotographerId();
     const { photographer, medias } = await getPhotographerMedias(id);
     displayHeader(photographer, getSumLikes(medias));
@@ -227,7 +223,6 @@ async function init() {
     const faHeart = await getAllHearts();
     setEventToHearts(faHeart);
     sortMedias(medias);
-
 };
 
 init();

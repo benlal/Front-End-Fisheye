@@ -1,11 +1,12 @@
+//opens contact form
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "flex";
     const photographerName = document.querySelector(".photograph-header h1").innerText;
     document.querySelector("header h2").innerHTML = "Contactez-moi</br>" + photographerName;
 
-
     const sendButton = document.querySelector(".modal_button");
+
     sendButton.addEventListener('click', function (event) {
         event.preventDefault();
         const userData = {};
@@ -16,9 +17,9 @@ function displayModal() {
         console.table(userData);
 
     });
-
 }
 
+//closes contact form
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
