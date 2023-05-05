@@ -10,6 +10,7 @@ async function getPhotographerMedias(id) {
     const response = await fetch('../../data/photographers.json');
     const data = await response.json();
     return ({
+        //gets photographer with corresponding ID
         photographer: data.photographers.find(p => p.id === id),
         //filters medias by ID
         medias: data.media.filter(m => m.photographerId === id)
@@ -32,7 +33,6 @@ async function displayData(medias) {
         });
         mediasSection.appendChild(mediaCardDOM);
     });
-
 }
 
 //sorts medias by popularity (number of likes) when page opens
@@ -53,7 +53,6 @@ async function getAllHearts() {
     let hearts = document.querySelectorAll(".like-button");
     return hearts
 }
-
 
 //listens click on heart icons
 async function setEventToHearts(faHeart) {
@@ -104,9 +103,7 @@ function sortMedias(medias) {
 
     //sorts medias by popularity
     function sortByPopularity() {
-        medias.sort((mediaA, mediaB) => {
-            return mediaA.likes - mediaB.likes
-        }).reverse()
+        initialSort(medias);
 
         galeryCleaner();
         displayData(medias);

@@ -15,7 +15,6 @@ function displayModal() {
         userData.eMail = document.querySelector("#email").value;
         userData.message = document.querySelector("#message").value;
         console.table(userData);
-
     });
 }
 
