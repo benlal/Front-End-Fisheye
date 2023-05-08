@@ -85,7 +85,6 @@ h1 {
     height: auto;
 }
 
-.close-button,
 .fa-heart,
 article img,
 article video {
@@ -102,6 +101,12 @@ article video {
 }
 
 /* form */
+
+.close-button {
+    font-size: 66px;
+    color: white;
+    cursor: pointer;
+}
 
 form {
     display: flex;

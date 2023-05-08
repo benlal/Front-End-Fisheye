@@ -41,10 +41,9 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" class="close-button" alt="Croix de fermeture du formulaire"
-          onclick="closeModal()" />
+        <button class="close-button" aria-label="Bouton de fermeture"><i class="fa-solid fa-xmark"></i></button>
       </header>
-      <form>
+      <form id="contact-form">
         <div>
           <label for="firstname">Prénom</label>
           <input id="firstname" placeholder="Prénom" />

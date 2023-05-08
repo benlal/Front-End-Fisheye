@@ -33,6 +33,9 @@ async function displayData(medias) {
         });
         mediasSection.appendChild(mediaCardDOM);
     });
+    getAllHearts().then(heartList => {
+        setEventToHearts(heartList);
+    });
 }
 
 //sorts medias by popularity (number of likes) when page opens
@@ -101,13 +104,17 @@ function sortMedias(medias) {
     let secondOption = document.querySelector(".second-option");
     let thirdOption = document.querySelector(".third-option");
 
-    //sorts medias by popularity
-    function sortByPopularity() {
-        initialSort(medias);
-
+    //deletes current galery and creates a new one
+    function handleGaleryUpdate() {
         galeryCleaner();
         displayData(medias);
         closeList();
+    }
+
+    //sorts medias by popularity
+    function sortByPopularity() {
+        initialSort(medias);
+        handleGaleryUpdate();
     }
 
     //sorts medias by date
@@ -116,9 +123,7 @@ function sortMedias(medias) {
             return new Date().valueOf(mediaA.likes) - new Date().valueOf(mediaB.likes)
         }).reverse()
 
-        galeryCleaner();
-        displayData(medias);
-        closeList();
+        handleGaleryUpdate();
     }
 
     //sorts medias by title
@@ -135,9 +140,7 @@ function sortMedias(medias) {
             }
         })
 
-        galeryCleaner();
-        displayData(medias);
-        closeList();
+        handleGaleryUpdate();
     }
 
 
@@ -217,8 +220,6 @@ async function init() {
     displayHeader(photographer, getSumLikes(medias));
     initialSort(medias);
     displayData(medias);
-    const faHeart = await getAllHearts();
-    setEventToHearts(faHeart);
     sortMedias(medias);
 };
 
