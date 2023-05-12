@@ -37,8 +37,8 @@ async function displayData(medias) {
         });
         mediasSection.appendChild(mediaCardDOM);
     });
-    getAllHearts().then(heartList => {
-        setEventToHearts(heartList);
+    getAllHearts().then(hearts => {
+        setEventToHearts(hearts);
     });
 }
 
@@ -81,10 +81,12 @@ function likesCount() {
     if (elt.classList.contains("selected")) {
         photographLikesValue--;
         likesNumber--;
+        elt.ariaLabel = 'Ajouter un like';
         elt.classList.remove("selected");
     } else {
         photographLikesValue++;
         likesNumber++;
+        elt.ariaLabel = 'Retirer le like';
         elt.classList.add("selected");
     }
     //replaces both elements by new values
@@ -100,7 +102,6 @@ function getSumLikes(medias) {
     );
     return sumLikes
 }
-
 
 //sorts medias by popularity, date or title
 function sortMedias(medias) {
@@ -147,7 +148,7 @@ function sortMedias(medias) {
         handleGaleryUpdate();
     }
 
-
+    //changes name and aria of second option
     secondOption.addEventListener('click', function () {
         let newOption = '';
         let oldOption = firstOption.innerHTML;
@@ -165,8 +166,14 @@ function sortMedias(medias) {
         newOption = secondOption.innerHTML;
         firstOption.innerHTML = newOption;
         secondOption.innerHTML = oldOption;
+
+        let newLabel = secondOption.ariaLabel;
+        let oldLabel = firstOption.ariaLabel;
+        firstOption.ariaLabel = newLabel;
+        secondOption.ariaLabel = oldLabel;
     });
 
+    //changes name and aria of third option
     thirdOption.addEventListener('click', function () {
         let newOption = '';
         let oldOption = firstOption.innerHTML;
@@ -184,6 +191,11 @@ function sortMedias(medias) {
         newOption = thirdOption.innerHTML;
         firstOption.innerHTML = newOption;
         thirdOption.innerHTML = oldOption;
+
+        let newLabel = thirdOption.ariaLabel;
+        let oldLabel = firstOption.ariaLabel;
+        firstOption.ariaLabel = newLabel;
+        thirdOption.ariaLabel = oldLabel;
     });
 }
 
@@ -197,6 +209,8 @@ function closeList() {
     sortList.classList.add("closed-list");
     sortArrow.style.transform = 'rotate(0deg)';
     sortArrow.classList.remove("reverted-arrow");
+
+    sortButton.focus();
 }
 
 //opens list of filters
@@ -220,6 +234,7 @@ function displayList() {
         closeList();
     }
 }
+
 
 
 async function init() {

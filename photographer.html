@@ -13,24 +13,24 @@
 <body>
   <header>
     <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"
-        aria-label="Bouton de retour vers la page d'accueil" /></a>
+        aria-label="Retournez vers la page d'accueil" /></a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button class="contact_button" aria-label="Bouton d'ouverture du formulaire de contact">Contactez-moi</button>
+      <button class="contact_button" aria-label="Ouvrir le formulaire de contact">Contactez-moi</button>
     </div>
     <div class="sort_section">
       <p id="sorted-by">Trier par</p>
       <div id="sort-options">
-        <button class="sort-button closed-button" aria-label="Bouton de tri des médias">
-          <span class="first-option" aria-label="Option de tri par popularité">Popularité</span>
+        <button class="sort-button closed-button" aria-label="Trier les médias">
+          <span class="first-option" aria-label="Trier par popularité">Popularité</span>
           <i class="fa-solid fa-angle-down"></i>
         </button>
         <div class="sort-list closed-list">
           <hr>
-          <button class="sort-option second-option" aria-label="Option de tri par date">Date</button>
+          <button class="sort-option second-option" aria-label="Trier par date">Date</button>
           <hr>
-          <button class="sort-option third-option" aria-label="Option de tri par titre">Titre</button>
+          <button class="sort-option third-option" aria-label="Trier par titre">Titre</button>
         </div>
       </div>
     </div>
@@ -40,30 +40,30 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <button class="close-button" aria-label="Bouton de fermeture"><i class="fa-solid fa-xmark"></i></button>
+        <button class="close-button" aria-label="Fermer le formulaire"><i class="fa-solid fa-xmark"></i></button>
       </header>
       <form id="contact-form">
         <div>
           <label for="firstname">Prénom</label>
-          <input id="firstname" placeholder="Prénom" />
+          <input id="firstname" aria-label="Saisir son prénom"/>
           <label for="lastname">Nom</label>
-          <input id="lastname" placeholder="Nom" />
+          <input id="lastname" aria-label="Saisir son nom"/>
           <label for="email">Email</label>
-          <input id="email" placeholder="Email" />
+          <input id="email" aria-label="Saisir son email"/>
           <label for="message">Votre message</label>
-          <textarea id="message" placeholder="Votre message"></textarea>
+          <textarea id="message" aria-label="Saisir son message"></textarea>
         </div>
-        <button class="contact_button modal_button" aria-label="Bouton d'envoi de formulaire)">Envoyer</button>
+        <button class="contact_button modal_button" aria-label="Envoyer le formulaire">Envoyer</button>
       </form>
     </div>
   </div>
   <div id="media-lightbox">
     <div class="media-lightbox_content">
-      <button class="close-media" aria-label="Bouton de fermeture"><i class="fa-solid fa-xmark"></i></button>
-      <button class="previous-media" aria-label="Bouton de retour en arrière"><i
+      <button class="close-media" aria-label="Fermer la lightbox"><i class="fa-solid fa-xmark"></i></button>
+      <button class="previous-media" aria-label="Retourner en arrière"><i
           class="fa-solid fa-angle-left"></i></button>
       <div class="media-lightbox_media"></div>
-      <button class="next-media" aria-label="Bouton d'avancement"><i class="fa-solid fa-angle-right"></i></button>
+      <button class="next-media" aria-label="Avancer"><i class="fa-solid fa-angle-right"></i></button>
     </div>
   </div>
   <script type="module" src="scripts/factories/photographer.js"></script>
