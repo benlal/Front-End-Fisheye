@@ -1,4 +1,4 @@
-function mediaFactory(data) {
+export function mediaFactory(data) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
 
   // generates content based on media type

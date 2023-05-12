@@ -1,5 +1,7 @@
+import { getPhotographerId } from '../pages/photographer.js';
+
 //opens lightbox
-async function displayLightbox(mediaId, medias) {
+export async function displayLightbox(mediaId, medias) {
     const lightbox = document.getElementById("media-lightbox");
     lightbox.style.display = "inline";
 

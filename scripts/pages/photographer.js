@@ -1,5 +1,9 @@
+import { photographerFactory } from '../factories/photographer.js';
+import { mediaFactory } from '../factories/media.js';
+import { displayLightbox } from '../utils/lightbox.js';
+
 //gets photographer ID
-function getPhotographerId() {
+export function getPhotographerId() {
     const url = new URL(window.location.href);
     const id = parseInt(url.searchParams.get("id"));
     return id;
@@ -19,8 +23,8 @@ async function getPhotographerMedias(id) {
 
 // creates photographer's header
 async function displayHeader(photographer, sumLikes) {
-    const photographerHeader = photographerFactory(photographer).getUserHeaderDOM(sumLikes)
-};
+    photographerFactory(photographer).getUserHeaderDOM(sumLikes)
+}
 
 //creates medias galery
 async function displayData(medias) {
@@ -196,6 +200,10 @@ function closeList() {
 }
 
 //opens list of filters
+document.querySelector(".sort-button").addEventListener('click', function () {
+    displayList();
+});
+
 function displayList() {
     const sortButton = document.querySelector(".sort-button");
     const sortList = document.querySelector(".sort-list");
@@ -221,6 +229,6 @@ async function init() {
     initialSort(medias);
     displayData(medias);
     sortMedias(medias);
-};
+}
 
 init();

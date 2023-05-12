@@ -1,8 +1,13 @@
 //opens contact form
+document.querySelector(".contact_button").addEventListener('click', function () {
+    displayModal();
+});
+
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "flex";
 
+    // focus by default on closing button when opening contact form
     const closeButton = document.querySelector('.close-button');
     closeButton.focus();
 
@@ -10,7 +15,7 @@ function displayModal() {
     document.querySelector("header h2").innerHTML = "Contactez-moi</br>" + photographerName;
 
     //stocks data from form in a table then closes form
-    const submitForm = function (event) {
+    function submitForm(event) {
         event.preventDefault();
         const userData = {};
         userData.prenom = document.querySelector("#firstname").value;
@@ -27,14 +32,14 @@ function displayModal() {
 }
 
 //closes contact form
-function closeModal(submitForm) {
+function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
     // focus by on contact button when closing contact form
     document.querySelector(".contact_button").focus();
 }
 
-// focus by default on closing button when opening contact form
+
 document.querySelector(".close-button").addEventListener('click', function () {
     closeModal();
 });

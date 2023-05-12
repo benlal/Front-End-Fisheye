@@ -17,13 +17,12 @@
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()"
-        aria-label="Bouton d'ouverture du formulaire de contact">Contactez-moi</button>
+      <button class="contact_button" aria-label="Bouton d'ouverture du formulaire de contact">Contactez-moi</button>
     </div>
     <div class="sort_section">
       <p id="sorted-by">Trier par</p>
       <div id="sort-options">
-        <button class="sort-button closed-button" onclick="displayList()" aria-label="Bouton de tri des médias">
+        <button class="sort-button closed-button" aria-label="Bouton de tri des médias">
           <span class="first-option" aria-label="Option de tri par popularité">Popularité</span>
           <i class="fa-solid fa-angle-down"></i>
         </button>
@@ -67,11 +66,11 @@
       <button class="next-media" aria-label="Bouton d'avancement"><i class="fa-solid fa-angle-right"></i></button>
     </div>
   </div>
-  <script src="scripts/factories/photographer.js"></script>
-  <script src="scripts/factories/media.js"></script>
-  <script src="/scripts/pages/photographer.js"></script>
+  <script type="module" src="scripts/factories/photographer.js"></script>
+  <script type="module" src="scripts/factories/media.js"></script>
+  <script type="module" src="/scripts/pages/photographer.js"></script>
   <script src="/scripts/utils/contactForm.js"></script>
-  <script src="/scripts/utils/lightbox.js"></script>
+  <script type="module" src="/scripts/utils/lightbox.js"></script>
 </body>
 
 </html>
