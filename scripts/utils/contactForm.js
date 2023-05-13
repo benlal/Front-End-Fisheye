@@ -39,7 +39,6 @@ function closeModal() {
     document.querySelector(".contact_button").focus();
 }
 
-
 document.querySelector(".close-button").addEventListener('click', function () {
     closeModal();
 });

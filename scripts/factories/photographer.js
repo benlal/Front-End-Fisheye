@@ -10,7 +10,7 @@ export function photographerFactory(data) {
 
         const a = document.createElement('a');
         a.setAttribute("href", photographerPage);
-        a.setAttribute("aria-label", `Accès à la page de ${name}`);
+        a.setAttribute("aria-label", `Accéder à la page de ${name}`);
 
         const img = document.createElement('img');
         img.setAttribute("src", picture);
@@ -32,9 +32,9 @@ export function photographerFactory(data) {
         article.appendChild(a);
         a.appendChild(img);
         a.appendChild(photographerName);
-        article.appendChild(photographerLocation);
-        article.appendChild(photographerTagline);
-        article.appendChild(photographerPrice);
+        a.appendChild(photographerLocation);
+        a.appendChild(photographerTagline);
+        a.appendChild(photographerPrice);
         return (article);
     }
 

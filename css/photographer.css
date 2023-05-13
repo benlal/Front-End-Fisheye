@@ -100,6 +100,10 @@ article video {
     border: 3px solid white;
 }
 
+.media-button {
+    height: 300px;
+}
+
 /* form */
 
 .close-button {

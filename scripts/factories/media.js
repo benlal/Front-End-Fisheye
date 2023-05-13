@@ -32,7 +32,7 @@ export function mediaFactory(data) {
   function getMediaCardDOM() {
     const article = document.createElement('article');
     const mediaButton = document.createElement('button');
-    mediaButton.setAttribute("aria-label", `Aggrandir le média ${title}`);
+    mediaButton.setAttribute("aria-label", `${title}, aggrandir le média`);
     mediaButton.setAttribute("data-id", data.id);
     mediaButton.classList.add('media-button');
     // calls mediaType function 

@@ -211,6 +211,7 @@ function closeList() {
     sortArrow.classList.remove("reverted-arrow");
 
     sortButton.focus();
+    sortButton.ariaLabel = 'Trier les médias';
 }
 
 //opens list of filters
@@ -225,6 +226,7 @@ function displayList() {
 
     //checks if list is closed the opens it
     if (sortButton.classList.contains("closed-button")) {
+        sortButton.ariaLabel = '';
         sortButton.classList.remove("closed-button");
         sortList.classList.remove("closed-list");
         sortArrow.style.transform = 'rotate(180deg)';
@@ -234,8 +236,6 @@ function displayList() {
         closeList();
     }
 }
-
-
 
 async function init() {
     const id = await getPhotographerId();
